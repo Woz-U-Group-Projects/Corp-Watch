@@ -23,7 +23,7 @@ namespace CW8.Controllers
        
         // POST api/Employee
         [HttpPost]
-        [Route("api/Employee/Create")]
+        [Route("Create")]
         public int Create(TblEmployee employee)
         {
             return objemployee.AddEmployee(employee);
@@ -31,28 +31,28 @@ namespace CW8.Controllers
 
         // Get api/Employee Data 
         [HttpGet]
-        [Route("api/Employee/Details/{id}")]
+        [Route("Details/{id}")]
         public TblEmployee Details(int id)
         {
             return objemployee.GetEmployeeData(id);
         }
 
         [HttpPut]
-        [Route("api/Employee/Edit")]
+        [Route("Edit")]
         public int Edit(TblEmployee employee)
         {
             return objemployee.UpdateEmployee(employee);
         }
 
         [HttpDelete]
-        [Route("api/Employee/Delete/{id}")]
+        [Route("Delete/{id}")]
         public int Delete(int id)
         {
             return objemployee.DeleteEmployee(id);
         }
 
         [HttpGet]
-        [Route("api/Employee/GetJobList")]
+        [Route("GetJobList")]
         public IEnumerable<TblJob> Details()
         {
             return objemployee.GetJob();

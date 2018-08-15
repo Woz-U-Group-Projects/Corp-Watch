@@ -71,8 +71,8 @@ export class FetchEmployee extends React.Component<RouteComponentProps<{}>, Fetc
                     <tr key={emp.employeeId}>
                         <td></td>
                         <td>{emp.employeeId}</td>
-                        <td>{emp.firstname}</td>
-                        <td>{emp.lastname}</td>
+                        <td>{emp.firstName}</td>
+                        <td>{emp.lastName}</td>
                         <td>{emp.job}</td>
                         <td>{emp.department}</td>
                         <td>
@@ -87,8 +87,8 @@ export class FetchEmployee extends React.Component<RouteComponentProps<{}>, Fetc
 }
 export class EmployeeData {
     employeeId: number = 0;
-    firstname: string = "";
-    lastname: string = "";
+    firstName: string = "";
+    lastName: string = "";
     job: string = "";
     department: string = "";
 }

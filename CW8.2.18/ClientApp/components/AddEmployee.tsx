@@ -12,11 +12,7 @@ export class AddEmployee extends React.Component<RouteComponentProps<{}>, AddEmp
     constructor(props) {
         super(props);
         this.state = { title: "", loading: true, jobList: [], empData: new EmployeeData };
-        fetch('api/Employee/GetJobList')
-            .then(response => response.json() as Promise<Array<any>>)
-            .then(data => {
-                this.setState({ jobList: data });
-            });
+        
         var empid = this.props.match.params["empid"];
         // This will set state for Edit employee  
         if (empid > 0) {
@@ -34,16 +30,25 @@ export class AddEmployee extends React.Component<RouteComponentProps<{}>, AddEmp
         this.handleSave = this.handleSave.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
     }
+
+    //added during retro
+    public componentDidMount() {
+        fetch('api/Employee/GetJobList')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ jobList: data });
+            });
+    }
     public render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : this.renderCreateForm(this.state.jobList);
-        return <div>
+        return (<div>
             <h1>{this.state.title}</h1>
             <h3>Employee</h3>
             <hr />
             {contents}
-        </div>;
+        </div>);
     }
     // This will handle the submit form event.  
     private handleSave(event) {
@@ -85,13 +90,13 @@ export class AddEmployee extends React.Component<RouteComponentProps<{}>, AddEmp
                 < div className="form-group row" >
                     <label className=" control-label col-md-12" htmlFor="Name">FirstName</label>
                     <div className="col-md-4">
-                        <input className="form-control" type="text" name="firstname" defaultValue={this.state.empData.firstname} required />
+                        <input className="form-control" type="text" name="firstname" defaultValue={this.state.empData.firstName} required />
                     </div>
                 </div >
                 < div className="form-group row" >
                     <label className=" control-label col-md-12" htmlFor="Name">LastName</label>
                     <div className="col-md-4">
-                        <input className="form-control" type="text" name="lasttname" defaultValue={this.state.empData.lastname} required />
+                        <input className="form-control" type="text" name="lasttname" defaultValue={this.state.empData.lastName} required />
                     </div>
                 </div >
                 <div className="form-group row">
